@@ -1,16 +1,15 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 import { Flex, Layout } from "antd";
+import Navbar from "../components/Navbar/Navbar";
 
 const { Content } = Layout;
 
-const Home = () => {
+const Expenses = () => {
 	return (
 		<Layout>
 			<Navbar />
-			<Content>home</Content>
 		</Layout>
 	);
 };
 
-export default Home;
+export default Expenses;

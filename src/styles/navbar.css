@@ -3,8 +3,141 @@
 	justify-content: space-between;
 	padding: 0;
 	margin: 0;
-	background-color: lightseagreen;
 }
 
 .menu {
+}
+
+.ant-menu-item {
+	background-color: rgb(99, 134, 17);
+	margin: 0.5rem;
+	color: white;
+	padding: 0 0 0 0;
+	padding-left: 10px;
+}
+
+.ant-menu-overflow {
+	color: white;
+	margin: 0rem;
+	padding: 0rem;
+}
+
+.navbar-large {
+	height: 3rem;
+	background-color: lightcoral;
+	display: flex;
+	box-shadow: 1px 1px 1px 1px rgb(0, 0, 0, 0.25);
+}
+
+.navbar-small {
+	display: none;
+	height: 3rem;
+	background-color: lightcoral;
+	box-shadow: 1px 1px 1px 1px rgb(0, 0, 0, 0.25);
+}
+
+.logo {
+	flex: 1.5;
+	padding-left: 0.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.small-logo {
+	flex: 5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.profile {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.small-profile {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.middle-menu {
+	display: flex;
+	justify-content: center;
+	flex: 15;
+}
+
+.small-menu {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	/* box-shadow: inset 0.5px 1px 1px 1px rgba(0, 0, 0, 0.25); */
+}
+
+.small-menu:hover {
+	background-color: rgb(41, 202, 148);
+	transition: background-color 0.15s ease-in-out;
+}
+
+.small-menu-container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex: 1.2;
+}
+
+.item {
+	display: flex;
+	width: 6rem;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	margin: 0.5rem;
+	cursor: pointer;
+	padding: 5px;
+	transition: background-color 0.15s ease-in-out;
+}
+
+.item:hover {
+	transition: background-color 0.15s ease-in-out;
+}
+
+.dropdown-menu {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 3rem;
+	transition: opacity 0.5s ease-in;
+	box-shadow: 1px 1px 1px 1px rgb(0, 0, 0, 0.25);
+}
+
+.dropdown-item-container {
+	height: 3rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid black;
+	cursor: pointer;
+}
+
+.dropdown-item-container:last-child {
+	border-bottom: none;
+}
+
+.dropdown-item {
+}
+
+/* @media only screen and (max-width: 768px) { */
+@media only screen and (max-width: 1024px) {
+	.navbar-large {
+		display: none;
+	}
+	.navbar-small {
+		display: flex;
+	}
 }
