@@ -7,6 +7,7 @@ import Expenses from "./pages/Expenses";
 import Login from "./pages/Login";
 import Visualizer from "./pages/Visualizer";
 import Budget from "./pages/Budget";
+import Register from "./pages/Register";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ export const App = () => {
 			<Route path="/visualizer" element={<Visualizer />} />
 			<Route path="/budget" element={<Budget />} />
 			<Route path="/login" element={<Login />} />
+			<Route path="/register" element={<Register />} />
 		</Routes>
 	);
 };

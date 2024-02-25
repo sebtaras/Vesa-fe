@@ -1,9 +1,9 @@
 import { Layout } from "antd";
 import React from "react";
 import Navbar from "../components/Navbar/Navbar";
-import LoginForm from "../components/Forms/LoginForm";
+import RegisterForm from "../components/Forms/RegisterForm";
 
-const Login = () => {
+const Register = () => {
 	return (
 		<Layout
 			style={{ display: "flex", flexDirection: "column", flex: 1, height: "100vh" }}
@@ -16,10 +16,10 @@ const Login = () => {
 					alignItems: "center",
 				}}
 			>
-				<LoginForm />
+				<RegisterForm />
 			</div>
 		</Layout>
 	);
 };
 
-export default Login;
+export default Register;

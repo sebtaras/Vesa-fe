@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 		<ConfigProvider
 			theme={{
 				token: {
-					fontFamily: '"Montserrat", "Roboto", "Noto Sans", sans-serif',
+					fontFamily: '"Poppins", "Montserrat", "Roboto", "Noto Sans", sans-serif',
 				},
 			}}
 		>

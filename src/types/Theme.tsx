@@ -12,6 +12,7 @@ export type TThemeContext = {
 export type Theme = {
 	type: ThemeType;
 	primary: string;
+	primary_complement: string;
 	primary_hover: string;
 	secondary: string;
 	secondary_hover: string;
@@ -29,10 +30,11 @@ export const lightTheme: Theme = {
 	success: "#9ded98",
 	danger: "#f06060",
 	background: "#fafafa",
-	primary: "#EEE832",
-	primary_hover: "#FAF56C",
-	secondary: "#e9edde",
-	secondary_hover: "#EEF0E8",
+	primary: "#9dd9f3",
+	primary_complement: "#25996c",
+	primary_hover: "#b8e2f2",
+	secondary: "#9EA1D4",
+	secondary_hover: "#AFC3F6",
 };
 
 export const darkTheme: Theme = {
@@ -43,6 +45,7 @@ export const darkTheme: Theme = {
 	danger: "#f06060",
 	background: "#fafafa",
 	primary: "#25996c",
+	primary_complement: "#25996c",
 	primary_hover: "#43b086",
 	secondary: "#5b30ab",
 	secondary_hover: "#7d56c7",

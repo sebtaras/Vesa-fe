@@ -50,7 +50,9 @@ const Navbar = () => {
 				<div className="profile">asd</div>
 			</div>
 			<div className="navbar-small" style={{ backgroundColor: theme.primary }}>
-				<NavbarMenu title={active} handleNavigate={handleNavigate} />
+				<div style={{ display: "flex", flex: 1 }}>
+					<NavbarMenu title={active} handleNavigate={handleNavigate} />
+				</div>
 				<div className="small-logo">
 					<Typography style={{ fontSize: largeText }}>VE$A</Typography>
 				</div>
