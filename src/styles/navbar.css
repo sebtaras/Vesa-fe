@@ -57,6 +57,10 @@
 	align-items: center;
 }
 
+.profile:hover {
+	cursor: pointer;
+}
+
 .small-profile {
 	flex: 1;
 	display: flex;

@@ -15,6 +15,7 @@ type User = {
 type TUserContext = {
 	user: User | null;
 	loading: boolean;
+	logout: () => void;
 	setTokens: (tokens: Tokens) => void;
 	setUser: React.Dispatch<React.SetStateAction<User | null>>;
 };
@@ -22,6 +23,7 @@ type TUserContext = {
 const initialValue: TUserContext = {
 	user: null,
 	loading: true,
+	logout: () => {},
 	setTokens: (tokens: Tokens) => {},
 	setUser: () => {},
 };
@@ -37,13 +39,20 @@ export const UserProvider = ({ children }: any) => {
 		console.log("SET TOKENS", tokens);
 		localStorage.setItem("refresh", tokens.refresh);
 	};
-	console.log("USER", user);
+
+	const logout = () => {
+		setUser(null);
+		localStorage.removeItem("access");
+		localStorage.removeItem("refresh");
+	};
+
 	return (
 		<>
 			<UserContext.Provider
 				value={{
 					user,
 					loading,
+					logout,
 					setTokens,
 					setUser,
 				}}

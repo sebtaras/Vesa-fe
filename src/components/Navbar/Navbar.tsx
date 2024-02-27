@@ -6,12 +6,14 @@ import NavbarItem from "./NavbarItem";
 import { Typography } from "antd";
 import { largeText, pages } from "../../util/constants";
 import NavbarMenu from "./NavbarMenu";
+import { useUser } from "../../hooks/useUser";
 
 const Navbar = () => {
 	const { theme } = useTheme();
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 	const [active, setActive] = useState("");
+	const { user, logout } = useUser();
 
 	const handleNavigate = (destination: string) => {
 		if (destination !== active) {
@@ -35,20 +37,22 @@ const Navbar = () => {
 				</div>
 
 				<div className="middle-menu" style={{ backgroundColor: theme.primary }}>
-					{pages.map((page, index) => {
-						const pageLower = page.toLowerCase();
-						return (
-							<NavbarItem
-								key={index}
-								title={page}
-								isSelected={pageLower === active}
-								handleNavigate={handleNavigate}
-							/>
-						);
-					})}
+					{user
+						? pages.map((page, index) => {
+								const pageLower = page.toLowerCase();
+								return (
+									<NavbarItem
+										key={index}
+										title={page}
+										isSelected={pageLower === active}
+										handleNavigate={handleNavigate}
+									/>
+								);
+						  })
+						: null}
 				</div>
 				<div className="profile">
-					<Link to="/login">Login</Link>
+					{user ? <p onClick={() => logout()}>Logout</p> : <Link to="/login">Login</Link>}
 				</div>
 			</div>
 			<div className="navbar-small" style={{ backgroundColor: theme.primary }}>
