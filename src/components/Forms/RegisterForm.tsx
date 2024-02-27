@@ -1,7 +1,7 @@
 import { Typography } from "antd";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
 import "../../styles/login-form.css";
 import { largeText, validateEmail } from "../../util/constants";
@@ -16,14 +16,11 @@ type TRegisterForm = {
 const RegisterForm = () => {
 	const { theme } = useTheme();
 	const [isHovered, setIsHovered] = useState(false);
-	const navigate = useNavigate();
 	const {
 		register,
 		handleSubmit,
-		watch,
 		getValues,
-
-		formState: { errors, isValidating, isValid },
+		formState: { errors },
 	} = useForm<TRegisterForm>();
 
 	const gradientStyle: React.CSSProperties = {
@@ -44,9 +41,7 @@ const RegisterForm = () => {
 		<div className="login-container">
 			<form className="login-container-left" onSubmit={handleSubmit(onSubmit)}>
 				<div className="login-container-left-inner">
-					<Typography style={{ fontSize: largeText, marginBottom: "0.75rem" }}>
-						Register
-					</Typography>
+					<p style={{ fontSize: largeText, marginBottom: "0.75rem" }}>Register</p>
 					<input
 						{...register("email", {
 							required: true,
@@ -104,7 +99,7 @@ const RegisterForm = () => {
 						<Typography>REGISTER</Typography>
 					</button>
 					<Link className="other-option" to="/login">
-						<p onClick={() => navigate("/login")}>Login instead?</p>
+						<p>Login instead?</p>
 					</Link>
 				</div>
 			</form>

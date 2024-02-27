@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Visualizer from "./pages/Visualizer";
 import Budget from "./pages/Budget";
 import Register from "./pages/Register";
+import { UserProvider } from "./context/UserContext";
 
 const queryClient = new QueryClient();
 
@@ -28,7 +29,9 @@ export const WrappedApp = () => {
 	return (
 		<BrowserRouter>
 			<QueryClientProvider client={queryClient}>
-				<App />
+				<UserProvider>
+					<App />
+				</UserProvider>
 			</QueryClientProvider>
 		</BrowserRouter>
 	);

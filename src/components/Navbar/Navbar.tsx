@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "../../hooks/useTheme";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
 import NavbarItem from "./NavbarItem";
 import { Typography } from "antd";
@@ -47,7 +47,9 @@ const Navbar = () => {
 						);
 					})}
 				</div>
-				<div className="profile">asd</div>
+				<div className="profile">
+					<Link to="/login">Login</Link>
+				</div>
 			</div>
 			<div className="navbar-small" style={{ backgroundColor: theme.primary }}>
 				<div style={{ display: "flex", flex: 1 }}>
