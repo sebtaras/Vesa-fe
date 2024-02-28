@@ -1,4 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { useRefresh } from "../hooks/api/useRefresh";
+import { jwtDecode } from "jwt-decode";
 
 type Tokens = {
 	access: string;
@@ -33,10 +35,9 @@ export const UserContext = createContext<TUserContext>(initialValue);
 export const UserProvider = ({ children }: any) => {
 	const [user, setUser] = useState<User | null>(null);
 	const [loading, setLoading] = useState(true);
-
+	const { mutateAsync: refresh, isLoading } = useRefresh();
+	console.log("User from context", user);
 	const setTokens = (tokens: Tokens) => {
-		//store tokens somewhere
-		console.log("SET TOKENS", tokens);
 		localStorage.setItem("refresh", tokens.refresh);
 	};
 
@@ -45,6 +46,27 @@ export const UserProvider = ({ children }: any) => {
 		localStorage.removeItem("access");
 		localStorage.removeItem("refresh");
 	};
+
+	const updateRefresh = async () => {
+		const refreshToken = localStorage.getItem("refresh");
+		if (!user && refreshToken) {
+			const result = await refresh(refreshToken);
+			if (result.type === "success") {
+				localStorage.setItem("refresh", result.refresh);
+				const user: any = jwtDecode(result.access);
+				setUser({
+					id: user.user_id,
+					email: user.username,
+					firstName: "NAME",
+					lastName: "SURNAME",
+				});
+			}
+		}
+	};
+
+	useEffect(() => {
+		updateRefresh();
+	}, [user]);
 
 	return (
 		<>

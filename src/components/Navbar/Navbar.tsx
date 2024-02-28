@@ -32,7 +32,7 @@ const Navbar = () => {
 	return (
 		<>
 			<div className="navbar-large" style={{ backgroundColor: theme.primary }}>
-				<div className="logo">
+				<div className="logo" onClick={() => console.log("user", user)}>
 					<Typography style={{ fontSize: largeText }}>VE$A</Typography>
 				</div>
 
