@@ -33,17 +33,17 @@ const Navbar = () => {
 		<>
 			<div className="navbar-large" style={{ backgroundColor: theme.primary }}>
 				<div className="logo" onClick={() => console.log("user", user)}>
-					<Typography style={{ fontSize: largeText }}>VE$A</Typography>
+					<p style={{ fontSize: largeText, color: theme.text_on_dark }}>VE$A</p>
 				</div>
 
 				<div className="middle-menu" style={{ backgroundColor: theme.primary }}>
 					{user
 						? pages.map((page, index) => {
-								const pageLower = page.toLowerCase();
+								const pageLower = page.title.toLowerCase();
 								return (
 									<NavbarItem
 										key={index}
-										title={page}
+										page={page}
 										isSelected={pageLower === active}
 										handleNavigate={handleNavigate}
 									/>
@@ -52,7 +52,13 @@ const Navbar = () => {
 						: null}
 				</div>
 				<div className="profile">
-					{user ? <p onClick={() => logout()}>Logout</p> : <Link to="/login">Login</Link>}
+					{user ? (
+						<p style={{ color: theme.text_on_dark }} onClick={() => logout()}>
+							Logout
+						</p>
+					) : (
+						<Link to="/login">Login</Link>
+					)}
 				</div>
 			</div>
 			<div className="navbar-small" style={{ backgroundColor: theme.primary }}>
@@ -60,9 +66,11 @@ const Navbar = () => {
 					<NavbarMenu title={active} handleNavigate={handleNavigate} />
 				</div>
 				<div className="small-logo">
-					<Typography style={{ fontSize: largeText }}>VE$A</Typography>
+					<p style={{ fontSize: largeText, color: theme.text_on_dark }}>VE$A</p>
 				</div>
-				<div className="small-profile">asd</div>
+				<div className="small-profile">
+					<p style={{ color: theme.text_on_dark }}>ME =')</p>
+				</div>
 			</div>
 		</>
 	);

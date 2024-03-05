@@ -1,8 +1,6 @@
-import { jwtDecode } from "jwt-decode";
+import { useMutation } from "react-query";
 import { TLoginResult } from "../../types/Auth";
 import { axiosClient } from "../../util/axiosClient";
-import { useUser } from "../useUser";
-import { useMutation } from "react-query";
 
 export const useRefresh = () => {
 	const refresh = async (token: string): Promise<TLoginResult> => {
@@ -10,7 +8,7 @@ export const useRefresh = () => {
 			const { data } = await axiosClient.post<any>(`token/refresh/`, {
 				refresh: token,
 			});
-			if (data.detal) {
+			if (data.detail) {
 				return {
 					type: "error",
 					detail: data.detail,

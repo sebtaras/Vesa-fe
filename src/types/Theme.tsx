@@ -17,7 +17,8 @@ export type Theme = {
 	secondary: string;
 	secondary_hover: string;
 	background: string;
-	text: string;
+	text_on_light: string;
+	text_on_dark: string;
 	success: string;
 	warn: string;
 	danger: string;
@@ -25,29 +26,32 @@ export type Theme = {
 
 export const lightTheme: Theme = {
 	type: ThemeType.LIGHT,
-	text: "#000000",
+	text_on_dark: "#ffffff",
+	text_on_light: "#000000",
 	warn: "#f0a25d",
 	success: "#9ded98",
 	danger: "#f06060",
 	background: "#fafafa",
-	primary: "#9dd9f3",
+	// primary: "#9dd9f3",
+	primary: "#078278",
 	primary_complement: "#25996c",
 	primary_hover: "#b8e2f2",
-	secondary: "#9EA1D4",
+	secondary: "#17ada1",
 	secondary_hover: "#AFC3F6",
 };
 
 export const darkTheme: Theme = {
 	type: ThemeType.DARK,
-	text: "#ffffff",
+	text_on_dark: "#ffffff",
+	text_on_light: "#ffffff",
 	warn: "#f0a25d",
 	success: "#9ded98",
 	danger: "#f06060",
 	background: "#fafafa",
 	primary: "#25996c",
-	primary_complement: "#25996c",
+	primary_complement: "#12b535",
 	primary_hover: "#43b086",
-	secondary: "#5b30ab",
+	secondary: "#12b535",
 	secondary_hover: "#7d56c7",
 };
 

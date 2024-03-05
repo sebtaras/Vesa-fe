@@ -42,6 +42,15 @@ const NavbarMenu = ({ title, handleNavigate }: Props) => {
 		backgroundColor: isHoveredMenu ? theme.primary_hover : theme.primary,
 	};
 
+	const getIcon = () => {
+		pages.forEach((page) => {
+			if (page.title === title) {
+				return page;
+			}
+		});
+		return pages[0];
+	};
+
 	return (
 		<>
 			<div
@@ -52,7 +61,14 @@ const NavbarMenu = ({ title, handleNavigate }: Props) => {
 				onMouseEnter={() => setIsHoveredMenu(true)}
 				onMouseLeave={() => setIsHoveredMenu(false)}
 			>
-				<Typography>{capitalize(title)}</Typography>
+				<div
+					style={{
+						marginRight: "0.3rem",
+					}}
+				>
+					{getIcon().icon(theme)}
+				</div>
+				<p style={{ color: theme.text_on_dark }}>{capitalize(title)}</p>
 			</div>
 			{menuOpened ? (
 				<div
@@ -65,10 +81,10 @@ const NavbarMenu = ({ title, handleNavigate }: Props) => {
 							<div key={index} className="dropdown-item-container">
 								{/* <NavbarDropdownItem title={page} /> */}
 								<NavbarItem
-									isSelected={title === page.toLowerCase()}
-									title={page}
+									isSelected={title === page.title.toLowerCase()}
+									page={page}
 									handleNavigate={() => {
-										handleNavigate(page.toLowerCase());
+										handleNavigate(page.title.toLowerCase());
 									}}
 								/>
 							</div>

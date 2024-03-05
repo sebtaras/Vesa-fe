@@ -77,19 +77,19 @@ const LoginForm = () => {
 						onMouseLeave={() => setIsHovered(false)}
 						disabled={isLoading}
 					>
-						<p>LOG IN</p>
+						<p style={{ color: theme.text_on_light }}>LOG IN</p>
 					</button>
 					<Link className="other-option" to="/register">
-						<p>Register instead?</p>
+						<p style={{ color: theme.text_on_light }}>Register instead?</p>
 					</Link>
 				</div>
 			</form>
 			<div className="login-container-right" style={gradientStyle}>
-				<p style={{ fontSize: largeText }}>VE$A</p>
+				<p style={{ fontSize: largeText, color: theme.text_on_dark }}>VE$A</p>
 				<p style={{ textAlign: "center" }}>
 					Ve-sa is a manual budgeting app designed to help you Sa-ve money!
 				</p>
-				<p>Log in to get started.</p>
+				<p style={{ color: theme.text_on_light }}>Log in to get started.</p>
 			</div>
 		</div>
 	);

@@ -96,20 +96,20 @@ const RegisterForm = () => {
 						onMouseEnter={() => setIsHovered(true)}
 						onMouseLeave={() => setIsHovered(false)}
 					>
-						<Typography>REGISTER</Typography>
+						<p style={{ color: theme.text_on_light }}>REGISTER</p>
 					</button>
 					<Link className="other-option" to="/login">
-						<p>Login instead?</p>
+						<p style={{ color: theme.text_on_light }}>Login instead?</p>
 					</Link>
 				</div>
 			</form>
 			{/* <div className="login-container-right image"> */}
 			<div className="login-container-right" style={gradientStyle}>
-				<p style={{ fontSize: largeText }}>VE$A</p>
+				<p style={{ fontSize: largeText, color: theme.text_on_dark }}>VE$A</p>
 				<p style={{ textAlign: "center" }}>
 					Ve-sa is a manual budgeting app designed to help you Sa-ve money!
 				</p>
-				<p>Log in to get started.</p>
+				<p style={{ color: theme.text_on_light }}>Log in to get started.</p>
 				{/* </div> */}
 			</div>
 		</div>

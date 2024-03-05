@@ -20,7 +20,7 @@ const NavbarDropdownItem = ({ title }: Props) => {
 			onMouseEnter={() => setIsHoveredMenu(true)}
 			onMouseLeave={() => setIsHoveredMenu(false)}
 		>
-			<Typography>{title}</Typography>
+			<p style={{ color: theme.text_on_light }}>{title}</p>
 		</div>
 	);
 };
