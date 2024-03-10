@@ -30,7 +30,7 @@ const Navbar = () => {
 	}, [pathname]);
 
 	return (
-		<>
+		<div>
 			<div className="navbar-large" style={{ backgroundColor: theme.primary }}>
 				<div className="logo" onClick={() => console.log("user", user)}>
 					<p style={{ fontSize: largeText, color: theme.text_on_dark }}>VE$A</p>
@@ -72,7 +72,7 @@ const Navbar = () => {
 					<p style={{ color: theme.text_on_dark }}>ME =')</p>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

@@ -10,4 +10,6 @@
 body {
 	margin: 0;
 	font-family: "Poppins, Montserrat", "Roboto", "Noto Sans", sans-serif;
+	display: flex;
+	flex-direction: column;
 }

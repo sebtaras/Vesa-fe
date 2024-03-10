@@ -1,0 +1,24 @@
+.table-container {
+	display: flex;
+	flex-direction: column;
+	padding-top: 1rem;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+}
+
+.table {
+	width: 1024px;
+}
+
+.table-row {
+}
+
+.table-row:hover {
+	background-color: cadetblue;
+}
+
+.add-button {
+	display: flex;
+	alignitems: center;
+}

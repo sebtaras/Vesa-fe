@@ -1,64 +1,52 @@
 import React, { useEffect } from "react";
-import { Flex, Layout, Space, Table, TableProps, Tag } from "antd";
+import { Flex, Layout, Space, Table as AntdTable, TableProps, Tag, Button } from "antd";
+import Table from "../components/Table/Table";
 import Navbar from "../components/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import "../styles/expenses.css";
+import "../styles/table.css";
+import "../styles/shared.css";
 import { useTheme } from "../hooks/useTheme";
+import { prettifyDate } from "../util/prettifyDate";
+import { AiOutlinePlus } from "react-icons/ai";
 
 const { Content } = Layout;
 
 interface DataType {
 	key: string;
-	name: string;
-	age: number;
-	address: string;
-	tags: string[];
+	amount: number;
+	currency: string;
+	date: Date;
 }
 
 const columns: TableProps<DataType>["columns"] = [
 	{
-		title: "Name",
-		dataIndex: "name",
-		key: "name",
-		render: (text) => <a>{text}</a>,
+		title: "Amount",
+		dataIndex: "amount",
+		key: "amount",
 	},
 	{
-		title: "Age",
-		dataIndex: "age",
+		title: "Currency",
+		dataIndex: "currency",
 		key: "age",
 	},
 	{
-		title: "Address",
-		dataIndex: "address",
-		key: "address",
+		title: "Date",
+		dataIndex: "date",
+		key: "date",
+		render: (_, record) => {
+			prettifyDate(record.date);
+			return <div>{prettifyDate(record.date)}</div>;
+		},
 	},
-	{
-		title: "Tags",
-		key: "tags",
-		dataIndex: "tags",
-		render: (_, { tags }) => (
-			<>
-				{tags.map((tag) => {
-					let color = tag.length > 5 ? "geekblue" : "green";
-					if (tag === "loser") {
-						color = "volcano";
-					}
-					return (
-						<Tag color={color} key={tag}>
-							{tag.toUpperCase()}
-						</Tag>
-					);
-				})}
-			</>
-		),
-	},
+
 	{
 		title: "Action",
 		key: "action",
 		render: (_, record) => (
 			<Space size="middle">
-				<a>Invite {record.name}</a>
+				<a>Invite</a>
 				<a>Delete</a>
 			</Space>
 		),
@@ -68,24 +56,9 @@ const columns: TableProps<DataType>["columns"] = [
 const data: DataType[] = [
 	{
 		key: "1",
-		name: "John Brown",
-		age: 32,
-		address: "New York No. 1 Lake Park",
-		tags: ["nice", "developer"],
-	},
-	{
-		key: "2",
-		name: "Jim Green",
-		age: 42,
-		address: "London No. 1 Lake Park",
-		tags: ["loser"],
-	},
-	{
-		key: "3",
-		name: "Joe Black",
-		age: 32,
-		address: "Sydney No. 1 Lake Park",
-		tags: ["cool", "teacher"],
+		amount: 20,
+		currency: "EUR",
+		date: new Date(Date.now()),
 	},
 ];
 
@@ -103,27 +76,41 @@ const Expenses = () => {
 	return (
 		<Layout>
 			<Navbar />
-			<div className="table-container">
-				<div className="table">
-					<Table columns={columns} dataSource={data} />;
+			<div className="page-container">
+				<Button
+					className="add-button"
+					icon={<AiOutlinePlus size={20} style={{ padding: 0, margin: 0 }} />}
+					style={{
+						color: theme.text_on_dark,
+						backgroundColor: theme.primary,
+						border: "none",
+					}}
+				>
+					Add expense
+				</Button>
+				<div className="table-container">
+					<div className="table">
+						<AntdTable columns={columns} dataSource={data} />
+					</div>
+					<Table />
+					<table className="table">
+						<tr style={{ backgroundColor: theme.primary }}>
+							<th style={{ padding: 10 }}>Company</th>
+							<th style={{ padding: 10 }}>Contact</th>
+							<th style={{ padding: 10 }}>Country</th>
+						</tr>
+						<tr className="table-row">
+							<td>Alfreds Futterkiste</td>
+							<td>Maria Anders</td>
+							<td>Germany</td>
+						</tr>
+						<tr className="table-row">
+							<td>Centro comercial Moctezuma</td>
+							<td>Francisco Chang</td>
+							<td>Mexico</td>
+						</tr>
+					</table>
 				</div>
-				<table className="table">
-					<tr style={{ backgroundColor: theme.primary }}>
-						<th style={{ padding: 10 }}>Company</th>
-						<th style={{ padding: 10 }}>Contact</th>
-						<th style={{ padding: 10 }}>Country</th>
-					</tr>
-					<tr className="table-row">
-						<td>Alfreds Futterkiste</td>
-						<td>Maria Anders</td>
-						<td>Germany</td>
-					</tr>
-					<tr className="table-row">
-						<td>Centro comercial Moctezuma</td>
-						<td>Francisco Chang</td>
-						<td>Mexico</td>
-					</tr>
-				</table>
 			</div>
 		</Layout>
 	);
