@@ -1,4 +1,3 @@
-import { Layout } from "antd";
 import React, { useEffect } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import LoginForm from "../components/Forms/LoginForm";
@@ -16,9 +15,7 @@ const Login = () => {
 	}, [user]);
 
 	return (
-		<Layout
-			style={{ display: "flex", flexDirection: "column", flex: 1, height: "100vh" }}
-		>
+		<div style={{ display: "flex", flexDirection: "column", flex: 1, height: "100vh" }}>
 			<Navbar />
 			<div
 				style={{
@@ -29,7 +26,7 @@ const Login = () => {
 			>
 				<LoginForm />
 			</div>
-		</Layout>
+		</div>
 	);
 };
 

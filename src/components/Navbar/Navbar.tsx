@@ -3,7 +3,6 @@ import { useTheme } from "../../hooks/useTheme";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
 import NavbarItem from "./NavbarItem";
-import { Typography } from "antd";
 import { largeText, pages } from "../../util/constants";
 import NavbarMenu from "./NavbarMenu";
 import { useUser } from "../../hooks/useUser";
@@ -30,7 +29,7 @@ const Navbar = () => {
 	}, [pathname]);
 
 	return (
-		<div>
+		<div className="header">
 			<div className="navbar-large" style={{ backgroundColor: theme.primary }}>
 				<div className="logo" onClick={() => console.log("user", user)}>
 					<p style={{ fontSize: largeText, color: theme.text_on_dark }}>VE$A</p>

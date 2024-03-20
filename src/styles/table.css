@@ -11,14 +11,18 @@
 	width: 1024px;
 }
 
-.table-row {
-}
-
 .table-row:hover {
 	background-color: cadetblue;
 }
 
-.add-button {
-	display: flex;
-	alignitems: center;
+.filter-container {
+	margin-top: 0.5rem;
+	padding: 0.5rem;
+	border-radius: 10px 10px 0px 0px;
+	background-color: lightgray;
+}
+
+.filter-options-container {
+	height: 50px;
+	width: 100%;
 }

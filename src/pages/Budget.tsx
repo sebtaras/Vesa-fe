@@ -1,4 +1,3 @@
-import { Layout } from "antd";
 import React, { useEffect } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
@@ -15,9 +14,9 @@ const Budget = () => {
 	}, [user]);
 
 	return (
-		<Layout>
+		<div>
 			<Navbar />
-		</Layout>
+		</div>
 	);
 };
 

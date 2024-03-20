@@ -9,6 +9,7 @@ import Visualizer from "./pages/Visualizer";
 import Budget from "./pages/Budget";
 import Register from "./pages/Register";
 import { UserProvider } from "./context/UserContext";
+import { PrimeReactProvider } from "primereact/api";
 
 const queryClient = new QueryClient();
 
@@ -30,7 +31,9 @@ export const WrappedApp = () => {
 		<BrowserRouter>
 			<QueryClientProvider client={queryClient}>
 				<UserProvider>
-					<App />
+					<PrimeReactProvider>
+						<App />
+					</PrimeReactProvider>
 				</UserProvider>
 			</QueryClientProvider>
 		</BrowserRouter>

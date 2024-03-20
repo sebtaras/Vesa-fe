@@ -1,7 +1,7 @@
 export const prettifyDate = (inputDate: Date | undefined | null) => {
 	if (!(inputDate instanceof Date)) {
 		console.error("Input must be a Date object");
-		return;
+		return "N/A";
 	}
 
 	const day = String(inputDate.getDate()).padStart(2, "0");

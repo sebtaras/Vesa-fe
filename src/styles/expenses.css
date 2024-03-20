@@ -1,0 +1,43 @@
+.button-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 100px;
+	padding: 0.25rem 0.75rem 0.25rem 0.5rem;
+	width: fit-content;
+}
+
+.button-container:hover {
+	transform: scale(1.03);
+	cursor: pointer;
+}
+
+.expense-button {
+	margin-left: 0.25rem;
+}
+
+.table-button {
+	padding: 0.25rem 1rem 0.25rem 1rem;
+	/* width: 6rem; */
+	border-radius: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.table-button:hover {
+	opacity: 80%;
+	transform: scale(1.03);
+}
+
+.table-button-text {
+	margin-left: 0.5rem;
+}
+
+.p-dialog-header {
+	padding: 0;
+}
+
+#pr_id_12_content {
+	padding: 0;
+}

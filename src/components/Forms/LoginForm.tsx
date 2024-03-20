@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../../styles/login-form.css";
-import { Typography } from "antd";
 import { useTheme } from "../../hooks/useTheme";
 import { largeText, validateEmail } from "../../util/constants";
 import { Link } from "react-router-dom";
@@ -77,7 +76,7 @@ const LoginForm = () => {
 						onMouseLeave={() => setIsHovered(false)}
 						disabled={isLoading}
 					>
-						<p style={{ color: theme.text_on_light }}>LOG IN</p>
+						<p style={{ color: theme.text_on_dark }}>LOG IN</p>
 					</button>
 					<Link className="other-option" to="/register">
 						<p style={{ color: theme.text_on_light }}>Register instead?</p>
