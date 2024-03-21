@@ -11,7 +11,7 @@ export const useLogin = () => {
 
 	const login = async (formData: TLoginForm): Promise<TLoginResult> => {
 		try {
-			const { data } = await axiosClient.post<any>(`token/`, {
+			const { data } = await axiosClient.post<any>(`api/token/`, {
 				username: formData.email,
 				password: formData.password,
 			});

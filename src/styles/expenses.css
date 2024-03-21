@@ -41,3 +41,46 @@
 #pr_id_12_content {
 	padding: 0;
 }
+
+option {
+	padding: 0.5rem;
+}
+
+.select {
+	outline: none;
+	width: 20rem;
+	background-color: rgb(230, 230, 230);
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	margin-bottom: 0.25rem;
+	margin-top: 0.25rem;
+	appearance: none;
+}
+
+.select > ::placeholder {
+	color: red;
+	opacity: 1; /* Firefox */
+}
+
+.p-dropdown {
+	border-radius: 0;
+	padding: 0;
+}
+
+.p-dropdown-label {
+	padding-left: 1rem;
+}
+
+.p-inputwrapper-focus {
+	border: 0;
+	box-shadow: none;
+}
+
+.p-placeholder {
+	color: #999;
+}
+
+.confirm-expense-button {
+	border-radius: 100px;
+	margin-top: 0.25rem;
+	padding: 0.25rem 1rem 0.25rem 1rem;
+}

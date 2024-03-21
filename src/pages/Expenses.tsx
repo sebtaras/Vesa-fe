@@ -17,7 +17,7 @@ import { BiSolidHide } from "react-icons/bi";
 import { Dialog } from "primereact/dialog";
 
 import Filter from "../components/Filter";
-import AddExpenseModal from "../components/AddExpenseModal";
+import ExpenseModal from "../components/ExpenseModal";
 import { Button } from "primereact/button";
 
 interface DataType {
@@ -100,7 +100,7 @@ const Expenses = () => {
 		<div>
 			<Navbar />
 			<div className="page-container">
-				<AddExpenseModal visible={visible} setVisible={setVisible} />
+				<ExpenseModal visible={visible} setVisible={setVisible} />
 				<div className="card flex justify-content-center"></div>
 				<div
 					className="button-container"
@@ -113,7 +113,7 @@ const Expenses = () => {
 					<AiOutlinePlus size={20} />
 					<div className="expense-button">Add expense</div>
 				</div>
-				{/* <Filter sliderValue={sliderValue} setSliderValue={setSliderValue} /> */}
+				<Filter sliderValue={sliderValue} setSliderValue={setSliderValue} />
 				{/* <div className="table-container"> */}
 				<DataTable
 					value={data}

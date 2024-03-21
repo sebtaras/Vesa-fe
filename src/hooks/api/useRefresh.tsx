@@ -5,7 +5,7 @@ import { axiosClient } from "../../util/axiosClient";
 export const useRefresh = () => {
 	const refresh = async (token: string): Promise<TLoginResult> => {
 		try {
-			const { data } = await axiosClient.post<any>(`token/refresh/`, {
+			const { data } = await axiosClient.post<any>(`api/token/refresh/`, {
 				refresh: token,
 			});
 			if (data.detail) {
