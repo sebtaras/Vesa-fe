@@ -15,7 +15,9 @@ export const useCategories = (type: "options" | "list") => {
 			if (type === "list") {
 				return data;
 			} else {
-				return data.map((e) => e.name);
+				return data.map((e) => {
+					return { label: e.name, value: e.id };
+				});
 			}
 			// }
 			// return data.map((c) => {

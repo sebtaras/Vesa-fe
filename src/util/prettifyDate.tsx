@@ -12,3 +12,8 @@ export const prettifyDate = (inputDate: Date | undefined | null) => {
 
 	return formattedDate;
 };
+
+export const dateYMDDashToDMYDot = (date: string) => {
+	const parts = date.split("-");
+	return parts.reverse().join(".");
+};

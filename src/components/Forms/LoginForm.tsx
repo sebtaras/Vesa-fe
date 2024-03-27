@@ -24,9 +24,8 @@ const LoginForm = () => {
 	const { mutate: loginMutation, isLoading } = useLogin();
 
 	const gradientStyle: React.CSSProperties = {
-		background: `linear-gradient(60deg, ${theme.primary_hover} 40%, ${theme.primary} 80%)`,
+		background: `linear-gradient(60deg, ${theme.primary} 40%, ${theme.secondary} 80%)`,
 	};
-
 	const buttonStyle: React.CSSProperties = {
 		backgroundColor: isHovered
 			? `linear-gradient(60deg, ${theme.primary_hover} 20%, ${theme.primary} 80%)`
@@ -85,10 +84,10 @@ const LoginForm = () => {
 			</form>
 			<div className="login-container-right" style={gradientStyle}>
 				<p style={{ fontSize: largeText, color: theme.text_on_dark }}>VE$A</p>
-				<p style={{ textAlign: "center" }}>
+				<p style={{ textAlign: "center", color: theme.text_on_dark }}>
 					Ve-sa is a manual budgeting app designed to help you Sa-ve money!
 				</p>
-				<p style={{ color: theme.text_on_light }}>Log in to get started.</p>
+				<p style={{ color: theme.text_on_dark }}>Log in to get started.</p>
 			</div>
 		</div>
 	);

@@ -11,7 +11,13 @@ import Register from "./pages/Register";
 import { UserProvider } from "./context/UserContext";
 import { PrimeReactProvider } from "primereact/api";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			staleTime: Infinity,
+		},
+	},
+});
 
 export const App = () => {
 	return (

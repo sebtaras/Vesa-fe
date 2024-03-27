@@ -1,77 +1,42 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar/Navbar";
-import { useNavigate } from "react-router-dom";
-import { useUser } from "../hooks/useUser";
-import "../styles/expenses.css";
-import "../styles/table.css";
-import "../styles/shared.css";
-import { useTheme } from "../hooks/useTheme";
-import { AiOutlinePlus } from "react-icons/ai";
-import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { prettifyDate } from "../util/prettifyDate";
+import { DataTable } from "primereact/datatable";
+import React, { useEffect, useState } from "react";
+import { AiOutlinePlus } from "react-icons/ai";
+import { BiSolidHide } from "react-icons/bi";
 import { FiEdit3 } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
-import { BiSolidHide } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar/Navbar";
+import { useTheme } from "../hooks/useTheme";
+import { useUser } from "../hooks/useUser";
+import "../styles/expenses.css";
+import "../styles/shared.css";
+import "../styles/table.css";
+import { dateYMDDashToDMYDot } from "../util/prettifyDate";
 
-import { Dialog } from "primereact/dialog";
-
-import Filter from "../components/Filter";
 import ExpenseModal from "../components/ExpenseModal";
-import { Button } from "primereact/button";
+import Filter from "../components/Filter";
+import { useExpenses } from "../hooks/api/useExpenses";
 
-interface DataType {
+interface TExpense {
+	id: number;
 	amount: number;
 	currency: string;
-	date: Date;
+	date: string;
 	note: string | null;
 	category: string;
 }
 
-const data: DataType[] = [
-	{
-		amount: 20.0,
-		currency: "EUR",
-		category: "Groceries",
-		date: new Date(Date.now()),
-		note: "This is an example of a note that someone would write",
-	},
-	{
-		amount: 39.59,
-		currency: "EUR",
-		category: "Gym",
-		date: new Date(Date.now()),
-		note: "",
-	},
-	{
-		amount: 2.19,
-		currency: "EUR",
-		category: "Transportation",
-		date: new Date(Date.now()),
-		note: "",
-	},
-	{
-		amount: 108.32,
-		currency: "EUR",
-		category: "Rent",
-		date: new Date(Date.now()),
-		note: "",
-	},
-	{
-		amount: 15.0,
-		currency: "EUR",
-		category: "Groceries",
-		date: new Date(Date.now()),
-		note: "",
-	},
-];
+export type ModalMode = "" | "edit" | "delete" | "create";
 
 const Expenses = () => {
 	const navigate = useNavigate();
 	const { user } = useUser();
 	const { theme } = useTheme();
-	const [visible, setVisible] = useState(false);
 	const [sliderValue, setSliderValue] = useState(100);
+	const [selectedId, setSelectedId] = useState<number | null>(null);
+	const [modalMode, setModalMode] = useState<ModalMode>("");
+	const { data: expenses, isLoading: loadingExpenses } = useExpenses();
 
 	useEffect(() => {
 		if (!user) {
@@ -100,7 +65,12 @@ const Expenses = () => {
 		<div>
 			<Navbar />
 			<div className="page-container">
-				<ExpenseModal visible={visible} setVisible={setVisible} />
+				<ExpenseModal
+					modalMode={modalMode}
+					setModalMode={setModalMode}
+					selectedId={selectedId}
+					setSelectedId={setSelectedId}
+				/>
 				<div className="card flex justify-content-center"></div>
 				<div
 					className="button-container"
@@ -108,7 +78,7 @@ const Expenses = () => {
 						color: theme.text_on_dark,
 						backgroundColor: theme.secondary,
 					}}
-					onClick={() => setVisible(true)}
+					onClick={() => setModalMode("create")}
 				>
 					<AiOutlinePlus size={20} />
 					<div className="expense-button">Add expense</div>
@@ -116,7 +86,7 @@ const Expenses = () => {
 				<Filter sliderValue={sliderValue} setSliderValue={setSliderValue} />
 				{/* <div className="table-container"> */}
 				<DataTable
-					value={data}
+					value={expenses ? expenses : []}
 					stripedRows
 					tableStyle={{
 						minWidth: "50rem",
@@ -134,16 +104,12 @@ const Expenses = () => {
 						bodyStyle={bodyStyle}
 						headerStyle={headerStyle}
 						alignHeader={"center"}
-						body={(row: DataType) => {
-							return (
-								<p>
-									{row.amount} {row.currency}
-								</p>
-							);
+						body={(row: TExpense) => {
+							return <p>{row.amount}</p>;
 						}}
 					></Column>
 					<Column
-						field="category"
+						field="category.name"
 						header="Category"
 						bodyStyle={bodyStyle}
 						headerStyle={headerStyle}
@@ -155,8 +121,8 @@ const Expenses = () => {
 						bodyStyle={bodyStyle}
 						headerStyle={headerStyle}
 						alignHeader={"center"}
-						body={(row: DataType) => {
-							return <p>{prettifyDate(row.date)}</p>;
+						body={(row: TExpense) => {
+							return <p>{dateYMDDashToDMYDot(row.date)}</p>;
 						}}
 					></Column>
 					<Column
@@ -165,7 +131,7 @@ const Expenses = () => {
 						bodyStyle={bodyStyle}
 						headerStyle={headerStyle}
 						alignHeader={"center"}
-						body={(row: DataType) => {
+						body={(row: TExpense) => {
 							return (
 								<div style={{}}>
 									<p>{row.note}</p>
@@ -179,7 +145,7 @@ const Expenses = () => {
 						bodyStyle={bodyStyle}
 						headerStyle={headerStyle}
 						alignHeader={"center"}
-						body={(row: DataType) => {
+						body={(row: TExpense) => {
 							return (
 								<div
 									style={{
@@ -193,6 +159,10 @@ const Expenses = () => {
 										style={{
 											backgroundColor: theme.secondary,
 											marginRight: "1rem",
+										}}
+										onClick={() => {
+											setSelectedId(row.id);
+											setModalMode("edit");
 										}}
 									>
 										<FiEdit3 color={theme.text_on_dark} size={16} />
@@ -208,6 +178,10 @@ const Expenses = () => {
 										style={{
 											backgroundColor: theme.danger,
 											marginRight: "1rem",
+										}}
+										onClick={() => {
+											setSelectedId(row.id);
+											setModalMode("delete");
 										}}
 									>
 										<MdDelete color={theme.text_on_dark} size={18} />

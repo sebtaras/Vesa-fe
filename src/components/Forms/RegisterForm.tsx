@@ -23,7 +23,7 @@ const RegisterForm = () => {
 	} = useForm<TRegisterForm>();
 
 	const gradientStyle: React.CSSProperties = {
-		background: `linear-gradient(60deg, ${theme.primary_hover} 40%, ${theme.primary} 80%)`,
+		background: `linear-gradient(60deg, ${theme.primary} 40%, ${theme.secondary} 80%)`,
 	};
 
 	const buttonStyle: React.CSSProperties = {
@@ -40,7 +40,14 @@ const RegisterForm = () => {
 		<div className="login-container">
 			<form className="login-container-left" onSubmit={handleSubmit(onSubmit)}>
 				<div className="login-container-left-inner">
-					<p style={{ fontSize: largeText, marginBottom: "0.75rem" }}>Register</p>
+					<p
+						style={{
+							fontSize: largeText,
+							marginBottom: "0.75rem",
+						}}
+					>
+						Register
+					</p>
 					<input
 						{...register("email", {
 							required: true,
@@ -95,7 +102,7 @@ const RegisterForm = () => {
 						onMouseEnter={() => setIsHovered(true)}
 						onMouseLeave={() => setIsHovered(false)}
 					>
-						<p style={{ color: theme.text_on_light }}>REGISTER</p>
+						<p style={{ color: theme.text_on_dark }}>REGISTER</p>
 					</button>
 					<Link className="other-option" to="/login">
 						<p style={{ color: theme.text_on_light }}>Login instead?</p>
@@ -105,10 +112,10 @@ const RegisterForm = () => {
 			{/* <div className="login-container-right image"> */}
 			<div className="login-container-right" style={gradientStyle}>
 				<p style={{ fontSize: largeText, color: theme.text_on_dark }}>VE$A</p>
-				<p style={{ textAlign: "center" }}>
+				<p style={{ textAlign: "center", color: theme.text_on_dark }}>
 					Ve-sa is a manual budgeting app designed to help you Sa-ve money!
 				</p>
-				<p style={{ color: theme.text_on_light }}>Log in to get started.</p>
+				<p style={{ color: theme.text_on_dark }}>Register to get started.</p>
 				{/* </div> */}
 			</div>
 		</div>
